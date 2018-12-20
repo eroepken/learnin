@@ -1,0 +1,3 @@
+node_modules
+# All JS files are compiled. We only want to commit *.ts files.
+**/*.js
