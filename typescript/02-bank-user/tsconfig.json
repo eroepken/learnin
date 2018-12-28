@@ -6,7 +6,11 @@
         "sourceMap": false,
         "strictNullChecks": true
     },
+    "files": [
+        "bankUser.ts"
+    ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "module-notes"
     ]
 }
