@@ -10,16 +10,19 @@
 </head>
 <body>
 
-<button class="trigger">Alert me</button>
-
 <script>
     SystemJS.config({
         baseURL: '/',
+        packages: {
+            '': {
+                defaultExtension: 'js'
+            }
+        },
         bundles: {
           "bundle.js": ["app"],
         }
     });
-    SystemJS.import('app');
+    SystemJS.import('bundle');
 </script>
 </body>
 </html>
