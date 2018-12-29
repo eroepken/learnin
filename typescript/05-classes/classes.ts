@@ -1,125 +1,62 @@
-class Person {
+// Exercise 1 - How was your TypeScript Class?
+class Car {
   name: string;
-  private type: string = 'person';
-  protected age: number;
+  acceleration: number = 0;
 
-  constructor(name: string, public username: string) {
+  constructor(name: string) {
     this.name = name;
   }
 
-  setAge(age: number): void {
-    this.age = age;
+  honk() {
+    console.log("Toooooooooot!");
+  };
 
-    if (age >= 30) {
-      this.setType('Old woman');
-    } else {
-      this.setType('Young woman');
-    }
+  accelerate (speed: number) {
+    this.acceleration = this.acceleration + speed;
   }
+}
+var car = new Car("BMW");
+car.honk();
+console.log(car.acceleration);
+car.accelerate(10);
+console.log(car.acceleration);
 
-  setType (type: string): void {
-    this.type = type;
-  }
+// Exercise 2 - Two objects, based on each other ...
+class baseObject {
+  width = 0;
+  length = 0;
+};
 
-  printAge(): void {
-    console.log(this.age);
-  }
-
-  printType(): void {
-    console.log(this.type);
+class Rectangle extends baseObject {
+  calcSize(): number {
+    return this.width * this.length;
   }
 }
 
-// const me = new Person('Ellie', 'ornateapple');
-// console.log(me);
-// me.setAge(30);
-// me.printType();
+const rectangle = new Rectangle();
+rectangle.width = 5;
+rectangle.length = 2;
+console.log(rectangle.calcSize());
 
-// function setUser(user: Person): void {
-//   const myUser = user;
-// }
+// Exercise 3 - Make sure to compile to ES5 (set the target in tsconfig.json)
+class Person {
+  private _firstName: string = "";
 
-class Ellie extends Person {
-  constructor() {
-    super('Ellie', 'ornateapple');
-    this.setAge(30);
+  get firstName() {
+      return this._firstName;
+  }
+  set firstName(value: string) {
+      if (value.length > 3) {
+          this._firstName = value;
+      }
+      else {
+          this._firstName = "";
+      }
   }
 }
-
-// const me = new Ellie();
-// console.log(me);
-
-// Getters & Setters
-class Plant {
-  private _species: string = 'Default';
-
-  set species(value: string) {
-    if (value.length > 3) {
-      this._species = value;
-    }
-  }
-
-  get species() {
-    return this._species;
-  }
-}
-
-// const plant = new Plant();
-// console.log(plant.species);
-// plant.species = 'AB';
-// console.log(plant.species);
-// plant.species = 'ABCD';
-// console.log(plant.species);
-
-// Static props/methods
-class Helpers {
-  static PI: number = 3.14159;
-  static calcCircumference(diameter: number): number {
-    return this.PI * diameter;
-  }
-}
-// console.log(2 * Helpers.PI);
-// console.log(Helpers.calcCircumference(8));
-
-// Abstract Classes
-abstract class Project {
-  projectName: string = 'Default';
-  budget: number = 1000;
-
-  abstract changeName(name: string): void;
-
-  calcBudget() {
-    return this.budget * 2;
-  }
-}
-
-class ITProject extends Project {
-  changeName(name: string) {
-    this.projectName = name;
-  }
-}
-
-// let project = new ITProject();
-// console.log(project);
-// project.changeName('New IT Project');
-// console.log(project);
-// console.log(project.calcBudget());
-
-// Private constructors
-// SINGLETON
-class OnlyOne {
-  private static instance: OnlyOne;
-  private constructor(public readonly name: string) {}
-
-  static getInstance() {
-    if (!OnlyOne.instance) {
-      OnlyOne.instance = new OnlyOne('The Only One');
-    }
-    return OnlyOne.instance;
-  }
-}
-
-// let wrong = new OnlyOne('The Only One'); // Constructor of class 'OnlyOne' is private and only accessible within the class declaration.
-let right = OnlyOne.getInstance();
-// right.name = 'WW Visitor Site'; // Cannot assign to 'name' because it is a read-only property.
-console.log(right.name);
+let person = new Person();
+console.log(person.firstName);
+person.firstName = "Ma";
+console.log(person.firstName);
+person.firstName = "Maximilian";
+console.log(person.firstName);
