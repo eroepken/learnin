@@ -40,13 +40,13 @@ abstract class Pokemon {
 
 	get images(): string {
 		return this._images.map((v, i) => {
-		return `<img src="${v.path}" title="${this.constructor.name}, Source: ${v.source}" />`;
+		  return `<img src="${v.path}" title="${this.constructor.name}, Source: ${v.source}" />`;
 		}).join('');
 	}
 
 	get types(): string {
 		return this._types.map((v) => {
-		return Types[v];
+		  return Types[v];
 		}).join(', ');
 	}
 
